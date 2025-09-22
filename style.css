@@ -57,3 +57,49 @@ button:hover {
   border: 1px solid #ff5252;
   color: #ff5252;
 }
+
+/* @media (min-width: 600px) {
+  /* Reset rapide */
+  /* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  header {
+    background: #4caf50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  section {
+    background: #f1f1f1;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  /* Responsive avec media queries */
+
+  /* main {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  section {
+    flex: 1;
+  }
+}
+*/  
