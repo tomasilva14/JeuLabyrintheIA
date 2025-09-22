@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Le Labyrinthe des IA : Vérité ou Illusion</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🌀 Le Labyrinthe des IA : Vérité ou Illusion</h1>
+    <canvas id="mazeCanvas" width="400" height="400"></canvas>
+
+    <div id="question-box">
+      <p id="question">Clique sur "Démarrer" pour entrer dans le labyrinthe</p>
+      <div id="choices">
+        <button id="trueBtn">Vrai</button>
+        <button id="falseBtn">Faux</button>
+      </div>
+      <button id="startBtn">▶️ Démarrer</button>
+    </div>
+
+    <div id="feedback">
+      <p id="feedback-text"></p>
+    </div>
+
+    <div id="characters">
+      <p id="mira" class="character mira"></p>
+      <p id="vira" class="character vira"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
