@@ -140,6 +140,7 @@ function handleMovement(e) {
           "🎉 Bravo ! Tu as atteint la sortie du labyrinthe.";
         document.removeEventListener("keydown", handleMovement);
       }
+      
     }
   }
 }
