@@ -159,7 +159,7 @@ function askQuestion(r, c) {
   // VIRA intervient aléatoirement
   if (Math.random() > 0.4) {
     viraEl.textContent =
-      "🤔 VIRA : Je ne sais pas si à cette allure tu trouveras la sortie !";
+      "🤔 VIRA : Es-tu sûr de ton choix ? À cette allure, on y sera encore demain!";
   }
 
   trueBtn.onclick = () => checkAnswer(true, q, r, c);
