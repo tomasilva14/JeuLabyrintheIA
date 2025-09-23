@@ -58,6 +58,14 @@ button:hover {
   color: #ff5252;
 }
 
+.green{
+  background-color: rgba(12, 233, 12, 0.145);
+}
+
+#feedback-text{
+  color: rgb(76, 184, 76);
+  border: 1px solid #68ec63;
+}
 /* @media (min-width: 600px) {
   /* Reset rapide */
   /* * {

@@ -28,44 +28,44 @@ const questions = {
     text: "L’IA est toujours neutre et objective.",
     correct: false,
     explanation:
-      "❌ Faux ! L’IA peut être biaisée selon les données utilisées.",
+      "L’IA peut être biaisée selon les données utilisées.",
   },
   "5,6": {
     text: "Un réseau de neurones artificiels est identique au cerveau humain.",
     correct: false,
-    explanation: "❌ Faux ! C’est une inspiration, mais beaucoup plus simple.",
+    explanation: "C’est une inspiration, mais beaucoup plus simple.",
   },
   "6,8": {
     text: "L’IA apprend grâce aux données d’entraînement.",
     correct: true,
-    explanation: "✅ Vrai ! Sans données, pas d’apprentissage.",
+    explanation: "Sans données, pas d’apprentissage.",
   },
   "7,3": {
     text: "Toutes les IA savent expliquer leurs décisions.",
     correct: false,
-    explanation: "❌ Faux ! Beaucoup de modèles sont des 'boîtes noires'.",
+    explanation: "Beaucoup de modèles sont des 'boîtes noires'.",
   },
   "8,1": {
     text: "Les biais dans l’IA viennent souvent des données humaines.",
     correct: true,
-    explanation: "✅ Vrai ! Les données reflètent nos biais.",
+    explanation: "Les données reflètent nos biais.",
   },
   "9,8": {
     text: "L’IA peut dépasser l’humain dans toutes les tâches.",
     correct: false,
-    explanation: "❌ Faux ! Elle est spécialisée dans des domaines précis.",
+    explanation: "Elle est spécialisée dans des domaines précis.",
   },
   "1,3": {
     text: "Le Machine Learning est une sous-catégorie de l’IA.",
     correct: true,
     explanation:
-      "✅ Vrai ! L’IA est le champ global, le ML en est une branche.",
+      "L’IA est le champ global, le ML en est une branche.",
   },
   "4,2": {
     text: "Une IA peut fonctionner parfaitement sans supervision ni réglage humain.",
     correct: false,
     explanation:
-      "❌ Faux ! Une IA nécessite suivi, réglages et validation humaine.",
+      "Une IA nécessite suivi, réglages et validation humaine.",
   },
 };
 
@@ -158,7 +158,7 @@ function askQuestion(r, c) {
   // VIRA intervient aléatoirement
   if (Math.random() > 0.4) {
     viraEl.textContent =
-      "🤔 VIRA : Es-tu sûr ? Moi je crois que c’est l’inverse...";
+      "🤔 VIRA : Je ne sais pas si à cette allure tu trouveras la sortie !";
   }
 
   trueBtn.onclick = () => checkAnswer(true, q, r, c);
@@ -172,7 +172,7 @@ function checkAnswer(answer, q, r, c) {
     maze[r][c] = 0; // question validée, devient chemin
   } else {
     feedbackEl.textContent = q.explanation;
-    miraEl.textContent = "✨ MIRA : Pas grave, voici la bonne explication.";
+    miraEl.textContent = "✨ MIRA : Dommage...ce n'est pas la bonne réponse, voici une petite explication : ";
   }
 
   trueBtn.style.display = "none";
