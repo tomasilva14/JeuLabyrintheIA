@@ -139,6 +139,7 @@ function handleMovement(e) {
         questionEl.textContent =
           "🎉 Bravo ! Tu as atteint la sortie du labyrinthe.";
         document.removeEventListener("keydown", handleMovement);
+        
       }
       
     }
@@ -157,11 +158,11 @@ function askQuestion(r, c) {
   viraEl.textContent = "";
 
   // VIRA intervient aléatoirement
-  if (Math.random() > 0.4) {
-    viraEl.textContent =
-      "🤔 VIRA : À cette allure, on y sera encore demain!";
-  }
-
+  // if (Math.random() > 0.4) {
+  //   viraEl.textContent =
+  //     "🤔 VIRA : Bravo";
+  // }
+   
   trueBtn.onclick = () => checkAnswer(true, q, r, c);
   falseBtn.onclick = () => checkAnswer(false, q, r, c);
 }
@@ -169,13 +170,20 @@ function askQuestion(r, c) {
 function checkAnswer(answer, q, r, c) {
   if (answer === q.correct) {
     feedbackEl.textContent = q.explanation;
-    miraEl.textContent = "✨ MIRA : Bravo, tu avances !";
+    miraEl.textContent = "✨ MIRA : Bravo, tu avances!  Voici une petite explication :";
+    viraEl.textContent = " 😡VIRA : 😤 Coup de chance... ";
     maze[r][c] = 0; // question validée, devient chemin
+     document.removeEventListener("keydown");
   } else {
-    feedbackEl.textContent = q.explanation;
-    miraEl.textContent = "✨ MIRA : Dommage...ce n'est pas la bonne réponse, voici une petite explication : ";
+    // feedbackEl.textContent = q.explanation;
+    // miraEl.textContent = "✨ MIRA : Non ce n'est pas la bonne réponse, mais tu as une petite explication et tu peux revenir sur ton choix: ";
+    viraEl.textContent = " 😡VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...🤨   ";
+     document.removeEventListener("keydown");
   }
 
   trueBtn.style.display = "none";
   falseBtn.style.display = "none";
+  
 }
+
+
