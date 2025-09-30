@@ -27,8 +27,7 @@ const questions = {
   "3,1": {
     text: "L’IA est toujours neutre et objective.",
     correct: false,
-    explanation:
-      "L’IA peut être biaisée selon les données utilisées.",
+    explanation: "L’IA peut être biaisée selon les données utilisées.",
   },
   "5,6": {
     text: "Un réseau de neurones artificiels est identique au cerveau humain.",
@@ -58,14 +57,12 @@ const questions = {
   "1,3": {
     text: "Le Machine Learning est une sous-catégorie de l’IA.",
     correct: true,
-    explanation:
-      "L’IA est le champ global, le ML en est une branche.",
+    explanation: "L’IA est le champ global, le ML en est une branche.",
   },
   "4,2": {
     text: "Une IA peut fonctionner parfaitement sans supervision ni réglage humain.",
     correct: false,
-    explanation:
-      "Une IA nécessite suivi, réglages et validation humaine.",
+    explanation: "Une IA nécessite suivi, réglages et validation humaine.",
   },
 };
 
@@ -77,6 +74,10 @@ const falseBtn = document.getElementById("falseBtn");
 const startBtn = document.getElementById("startBtn");
 const miraEl = document.getElementById("mira");
 const viraEl = document.getElementById("vira");
+const score = document.getElementById("score");
+
+let scoreValue = 0;
+score.textContent = `Score: ${scoreValue}/6`;
 
 trueBtn.style.display = "none";
 falseBtn.style.display = "none";
@@ -139,9 +140,7 @@ function handleMovement(e) {
         questionEl.textContent =
           "🎉 Bravo ! Tu as atteint la sortie du labyrinthe.";
         document.removeEventListener("keydown", handleMovement);
-        
       }
-      
     }
   }
 }
@@ -157,12 +156,9 @@ function askQuestion(r, c) {
   miraEl.textContent = "";
   viraEl.textContent = "";
 
-  // VIRA intervient aléatoirement
-  // if (Math.random() > 0.4) {
-  //   viraEl.textContent =
-  //     "🤔 VIRA : Bravo";
-  // }
-   
+  // disable keyboard while question is active
+  document.removeEventListener("keydown", handleMovement);
+
   trueBtn.onclick = () => checkAnswer(true, q, r, c);
   falseBtn.onclick = () => checkAnswer(false, q, r, c);
 }
@@ -170,20 +166,24 @@ function askQuestion(r, c) {
 function checkAnswer(answer, q, r, c) {
   if (answer === q.correct) {
     feedbackEl.textContent = q.explanation;
-    miraEl.textContent = "✨ MIRA : Bravo, tu avances!  Voici une petite explication :";
+    miraEl.textContent =
+      "✨ MIRA : Bravo, tu avances!  Voici une petite explication :";
     viraEl.textContent = " 😡VIRA : 😤 Coup de chance... ";
     maze[r][c] = 0; // question validée, devient chemin
-     document.removeEventListener("keydown");
+    scoreValue++;
   } else {
-    // feedbackEl.textContent = q.explanation;
-    // miraEl.textContent = "✨ MIRA : Non ce n'est pas la bonne réponse, mais tu as une petite explication et tu peux revenir sur ton choix: ";
-    viraEl.textContent = " 😡VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...🤨   ";
-     document.removeEventListener("keydown");
+    viraEl.textContent =
+      " 😡VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...🤨   ";
+    if (scoreValue > 0) {
+      scoreValue--;
+    }
   }
+
+  // re-enable keyboard (pass the same function reference)
+  document.addEventListener("keydown", handleMovement);
+
+  score.textContent = `Score: ${scoreValue}/6`;
 
   trueBtn.style.display = "none";
   falseBtn.style.display = "none";
-  
 }
-
-
