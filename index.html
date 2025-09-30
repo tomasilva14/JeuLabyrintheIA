@@ -2,33 +2,58 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Le Labyrinthe des IA : Vérité ou Illusion</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <h1>🌀 Le Labyrinthe des IA : Vérité ou Illusion</h1>
-<p>Élimine les cases violettes en répondant juste aux questions !</p>
-    <canvas id="mazeCanvas" width="400" height="400"></canvas>
-
-    <div id="question-box">
-      <p id="question">Clique sur "Démarrer" pour entrer dans le labyrinthe</p>
-      <div id="choices">
-        <button id="trueBtn">Vrai</button>
-        <button id="falseBtn">Faux</button>
+    <header class="app-header">
+      <div class="title-wrap">
+        <h1>Le Labyrinthe des IA</h1>
+        <p class="subtitle">
+          Vérité ou Illusion — Élimine les cases violettes en répondant juste
+        </p>
       </div>
-      <button id="startBtn">▶️ Démarrer</button>
-    </div>
+      <div class="hud">
+        <div id="score" class="hud-item">Score: 0</div>
+      </div>
+    </header>
 
-    <div id="feedback">
-     
-    </div>
+    <main class="game-area">
+      <section class="maze-wrap">
+        <canvas
+          id="mazeCanvas"
+          width="400"
+          height="400"
+          aria-label="Labyrinthe"
+        ></canvas>
+      </section>
 
-    <div id="characters">
-      <p id="mira" class="character mira"></p>
-       <p id="feedback-text" class="green character mira"></p>
-      <p id="vira" class="character vira"></p>
-      <p id="score"></p>
-    </div>
+      <aside class="panel">
+        <div id="question-box" class="panel-section">
+          <p id="question">
+            Clique sur "PLAY" pour entrer dans le labyrinthe
+          </p>
+          <div id="choices" class="choices">
+            <button id="trueBtn" class="choice-btn">Vrai</button>
+            <button id="falseBtn" class="choice-btn">Faux</button>
+          </div>
+          <button id="startBtn" class="start-btn">PLAY</button>
+        </div>
+
+        <div id="characters" class="panel-section characters">
+          <p id="mira" class="character mira">MIRA :</p>
+          <p id="vira" class="character vira">VIRA :</p>
+        </div>
+
+        <div id="infoQuestion">
+          <p id="feedback-text" class="green character mira"> Info:</p>
+        </div>
+
+        <div id="reponses" class="panel-section reponses"></div>
+      </aside>
+    </main>
 
     <script src="script.js"></script>
   </body>

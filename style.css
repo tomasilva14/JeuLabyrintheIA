@@ -1,113 +1,351 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #0f1518cc; /* panneau translucide */
+  --neon: #4dd0e1;
+  --muted: #9aa6ad;
+  --accent: #26c6da;
+  --danger: #ff5252;
+  --glass-border: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
 body {
-  font-family: Arial, sans-serif;
-  background: #0c0c0c;
-  color: #f0f0f0;
-  text-align: center;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(
+      1200px 600px at 10% 10%,
+      rgba(77, 208, 225, 0.04),
+      transparent
+    ),
+    linear-gradient(180deg, #071016 0%, var(--bg) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 10% 10%, 0 0;
+  background-size: 1200px 600px, 100% 100%;
+  background-attachment: fixed, fixed;
+  color: #e9f7f8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  color: #4dd0e1;
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.title-wrap h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--neon);
+  letter-spacing: 0.6px;
+}
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.hud {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.hud-item {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
+.game-area {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  align-items: center;
+}
+.maze-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #mazeCanvas {
-  background: #111;
-  border: 2px solid #4dd0e1;
-  margin-top: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  background: linear-gradient(180deg, #070809, #0e1416);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(77, 208, 225, 0.03);
+  border: 1px solid rgba(77, 208, 225, 0.08);
+  width: min(84vw, 640px);
+  height: auto;
+  max-width: 640px;
 }
 
-#question-box {
-  margin-top: 20px;
+.panel {
+  width: min(92vw, 360px);
+  max-width: 360px;
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 16px; /* un peu plus d'espace */
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 24px rgba(3, 8, 12, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Permettre au panneau de grandir naturellement; la page défilera plutôt que le panneau */
+  max-height: none;
+  overflow: visible;
+}
+.panel-section {
+  margin-bottom: 10px;
+  padding: 6px 4px;
 }
 
-button {
-  background: #4dd0e1;
+.choices {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0;
+}
+.choice-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
   border: none;
-  color: #000;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 8px;
+  background: linear-gradient(180deg, var(--neon), var(--accent));
+  color: #041014;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: bold;
+  transition: transform 0.12s ease, box-shadow 0.12s;
+}
+.choice-btn:active {
+  transform: translateY(2px);
 }
 
-button:hover {
-  background: #26c6da;
-}
-
-.character {
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mira {
-  background: rgba(77, 208, 225, 0.2);
-  border: 1px solid #4dd0e1;
-  color: #4dd0e1;
-}
-
-.vira {
-  background: rgba(255, 82, 82, 0.2);
-  border: 1px solid #ff5252;
-  color: #ff5252;
-}
-
-.green{
-  background-color: rgba(12, 233, 12, 0.145);
-}
-
-#feedback-text{
-  color: rgb(76, 184, 76);
-  border: 1px solid #68ec63;
-}
-/* @media (min-width: 600px) {
-  /* Reset rapide */
-  /* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-  }
-
-  header {
-    background: #4caf50;
-    color: white;
-    padding: 1rem;
+p#question {
     text-align: center;
-  }
+    margin-bottom: 20px;
+}
 
-  main {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-  }
+.start-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(77,208,225,0.12), rgba(38,198,218,0.06));
+  color: var(--neon); 
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(2,8,12,0.6), 0 0 18px rgba(38,198,218,0.06);
+  transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 180ms ease, color 140ms ease, background 160ms ease;
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.02);
+}
+.start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(2,8,12,0.65), 0 0 36px rgba(38,198,218,0.14);
+  color: var(--neon);
+  background: linear-gradient(180deg, rgba(38,198,218,0.18), rgba(77,208,225,0.08));
+}
+.start-btn:active {
+  transform: translateY(1px) scale(0.995);
+  box-shadow: 0 6px 16px rgba(2,8,12,0.6), 0 0 12px rgba(38,198,218,0.08);
+}
+.start-btn:focus {
+  outline: none;
+  box-shadow: 0 18px 40px rgba(2,8,12,0.65), 0 0 48px rgba(77,208,225,0.18);
+  border-color: rgba(77,208,225,0.18);
+  color: #001318;
+}
 
-  section {
-    background: #f1f1f1;
-    margin: 0.5rem 0;
-    padding: 1rem;
-    border-radius: 8px;
-  }
+  /* pulse néon subtil optionnel pour le bouton au repos */
+.start-btn[data-pulse="true"] {
+  animation: buttonNeon 4s ease-in-out infinite;
+}
 
-  /* Responsive avec media queries */
 
-  /* main {
+.feedback-panel {
+  min-height: 36px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--neon);
+  font-weight: 600;
+  border: 1px solid rgba(77, 208, 225, 0.06);
+  background: linear-gradient(180deg, rgba(77, 208, 225, 0.03), transparent);
+}
+
+.characters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.character {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-weight: 700;
+}
+.mira {
+  background: linear-gradient(
+    180deg,
+    rgba(77, 208, 225, 0.06),
+    rgba(77, 208, 225, 0.02)
+  );
+  color: var(--neon);
+  border: 1px solid rgba(77, 208, 225, 0.12);
+}
+.vira {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 82, 82, 0.06),
+    rgba(255, 82, 82, 0.02)
+  );
+  color: var(--danger);
+  border: 1px solid rgba(255, 82, 82, 0.12);
+}
+.green {
+  background: rgba(12, 233, 12, 0.08);
+  color: rgb(76, 184, 76);
+  border: 1px solid rgba(104, 236, 99, 0.12);
+}
+
+.reponses {
+  font-size: 0.9rem;
+  color: var(--muted);
+  min-height: 36px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+  /* Disposition responsive pour grands écrans : placer canvas et panneau côte à côte */
+@media (min-width: 900px) {
+  .game-area {
     flex-direction: row;
-    gap: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 36px 48px;
   }
-
-  section {
+  .maze-wrap {
     flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .panel {
+    width: 360px;
+    flex: 0 0 360px;
+  }
+  #mazeCanvas {
+    width: min(64vw, 720px);
+    height: auto;
   }
 }
-*/  
+
+/* Aides focus & accessibilité */
+.choice-btn:focus,
+.start-btn:focus {
+  outline: 3px solid rgba(77, 208, 225, 0.18);
+  outline-offset: 2px;
+}
+
+/* petites animations pour plus de vie */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(77, 208, 225, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(77, 208, 225, 0.06);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(77, 208, 225, 0);
+  }
+}
+.title-wrap h1 {
+  animation: neonPulse 4s ease-in-out infinite;
+}
+
+/* Préserver les sélecteurs hérités additionnels pour compatibilité */
+
+/* Boîte d'info affichée après réponse à une question */
+#infoQuestion {
+  display: flex;
+  justify-content: center; /* centrer à l'intérieur du panneau */
+  margin-bottom: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+#feedback-text {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(2, 8, 12, 0.55);
+  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
+  transform: translateY(0);
+  opacity: 0.95;
+  pointer-events: auto;
+  background-blend-mode: overlay;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  /* s'assurer que le retour peut s'étendre et pousser la page, ne pas faire défiler en interne */
+  max-height: none;
+  overflow: visible;
+}
+
+  /* Quand la zone d'info n'est pas active, afficher un état atténué pour rester visible */
+#infoQuestion:not(.show) #feedback-text {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.03);
+  opacity: 0.85;
+  /* allow the text block to grow and push the panel/page rather than scrolling internally */
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+  /* Basculer cette classe depuis JS pour révéler la carte d'info en état actif */
+#infoQuestion.show #feedback-text {
+  transform: translateY(0);
+  opacity: 1;
+  color: var(--neon);
+  border-style: solid;
+  border-color: rgba(77, 208, 225, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(77, 208, 225, 0.04),
+    rgba(77, 208, 225, 0.01)
+  );
+}
+
+@media (max-width: 520px) {
+  #feedback-text {
+  min-width: 0;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  }
+}
