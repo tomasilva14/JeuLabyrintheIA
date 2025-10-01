@@ -5,22 +5,23 @@ const cellSize = 40;
 
 // Labyrinthe : 1 = mur, 0 = chemin, 2 = question
 const maze = [
-  [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 2, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1],
-  [1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1],
-  [1, 1, 1, 1, 0, 1, 0, 0, 2, 1, 1, 1, 1, 0, 1],
-  [1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 2, 1],
-  [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1],
-  [1, 0, 2, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 1],
-  [1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
-  [1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 1, 1, 0, 1, 0, 2, 1, 1, 1, 1, 1],
-  [1, 0, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 0, 0, 0],
-  [1, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], // sortie en bas à droite
+  [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // 0
+  [1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1], // 1
+  [1, 0, 0, 0, 2, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1], // 2
+  [1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1], // 3
+  [1, 1, 1, 1, 0, 1, 0, 0, 2, 1, 1, 1, 1, 0, 1], // 4
+  [1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 2, 1], // 5
+  [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1], // 6
+  [1, 0, 2, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 1], // 7
+  [1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1], // 8
+  [1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1], // 9
+  [1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1], // 10
+  [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1], // 11
+  [1, 0, 0, 0, 1, 1, 0, 1, 0, 2, 1, 1, 1, 1, 1], // 12
+  [1, 0, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 0, 0, 0], // 13
+  [1, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], // 14
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], // 15   // sortie en bas à droite
+  // 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14
 ];
 
 // Joueur
@@ -39,31 +40,31 @@ if (canvas) {
 // 8 questions dans le labyrinthe
 const questions = {
   "2,4": {
-    text: "L’IA est toujours neutre et objective.",
+    text: "L’IA est toujours neutre et objective.", //
     correct: false,
     explanation: "L’IA peut être biaisée selon les données utilisées.",
   },
   "4,8": {
-    text: "Un réseau de neurones artificiels est identique au cerveau humain.",
+    text: "Un réseau de neurones artificiels est identique au cerveau humain.", //
     correct: false,
     explanation: "C’est une inspiration, mais beaucoup plus simple.",
   },
   "7,2": {
-    text: "L’IA apprend grâce aux données d’entraînement.",
+    text: "L’IA apprend grâce aux données d’entraînement.", //
     correct: true,
     explanation: "Sans données, pas d’apprentissage.",
   },
   "14,2": {
-    text: "Toutes les IA savent expliquer leurs décisions.",
+    text: "Toutes les IA savent expliquer leurs décisions.", //
     correct: false,
     explanation: "Beaucoup de modèles sont des 'boîtes noires'.",
   },
   "5,13": {
-    text: "Les biais dans l’IA viennent souvent des données humaines.",
+    text: "Les biais dans l’IA viennent souvent des données humaines.", //
     correct: true,
     explanation: "Les données reflètent nos biais.",
   },
-  "6,3": {
+  "12,9": {
     text: "L’IA peut dépasser l’humain dans toutes les tâches.",
     correct: false,
     explanation: "Elle est spécialisée dans des domaines précis.",
@@ -73,7 +74,7 @@ const questions = {
     correct: true,
     explanation: "L’IA est le champ global, le ML en est une branche.",
   },
-  "6,7": {
+  "7,7": {
     text: "Une IA peut fonctionner parfaitement sans supervision ni réglage humain.",
     correct: false,
     explanation: "Une IA nécessite suivi, réglages et validation humaine.",
@@ -95,12 +96,19 @@ const viraEl = document.getElementById("vira");
 const score = document.getElementById("score");
 
 let feedbackTimeout = null;
+// Position da última pergunta respondida (ou null)
+let lastAnsweredPos = null;
 
 let scoreValue = 0;
 score.textContent = `Score: ${scoreValue}/${Object.keys(questions).length}`;
 
 trueBtn.style.display = "none";
 falseBtn.style.display = "none";
+// Inicializar a caixa de feedback sempre com o prefixo INFO : e classe cinzenta
+if (feedbackEl) {
+  feedbackEl.textContent = "INFO :";
+  feedbackEl.classList.add("info-text");
+}
 
 startBtn.addEventListener("click", () => {
   startBtn.style.display = "none";
@@ -167,6 +175,27 @@ function handleMovement(e) {
       player.col = newCol;
       drawMaze();
 
+      // Se o jogador deixou a célula da última pergunta respondida, limpar o painel de info
+      if (lastAnsweredPos) {
+        const [lr, lc] = lastAnsweredPos.split(",").map(Number);
+        if (lr !== player.row || lc !== player.col) {
+          // limpar feedback e esconder o painel
+          if (feedbackEl) {
+            feedbackEl.textContent = "INFO :";
+            feedbackEl.classList.add("info-text");
+          }
+          if (infoWrap) infoWrap.classList.remove("show");
+          // limpar a pergunta visível e esconder os botões de escolha
+          if (questionEl) questionEl.textContent = "";
+          if (trueBtn) trueBtn.style.display = "none";
+          if (falseBtn) falseBtn.style.display = "none";
+          // resetar textos das personagens
+          if (miraEl) miraEl.textContent = "MIRA :";
+          if (viraEl) viraEl.textContent = "VIRA :";
+          lastAnsweredPos = null;
+        }
+      }
+
       // Vérifie si la case contient une question
       if (maze[newRow][newCol] === 2) {
         askQuestion(newRow, newCol);
@@ -203,8 +232,9 @@ function askQuestion(r, c) {
   if (infoWrap) {
     // Conserver la zone d'info comme espace réservé ; ne pas retirer la classe .show
     // Afficher un message si vide pour éviter une zone Info: vide
-    if (!feedbackEl.textContent || feedbackEl.textContent.trim() === '') {
-      feedbackEl.textContent = "Info: Réponds pour voir l'explication ici.";
+    if (!feedbackEl.textContent || feedbackEl.textContent.trim() === "") {
+      feedbackEl.textContent = "INFO : Réponds pour voir l'explication ici.";
+      feedbackEl.classList.add("info-text");
     }
   }
 
@@ -212,8 +242,10 @@ function askQuestion(r, c) {
   trueBtn.style.display = "inline-block";
   falseBtn.style.display = "inline-block";
   // Conserver les labels MIRA / VIRA et définir des valeurs par défaut si nécessaire
-  if (!miraEl.textContent || miraEl.textContent.trim() === '') miraEl.textContent = 'MIRA :';
-  if (!viraEl.textContent || viraEl.textContent.trim() === '') viraEl.textContent = 'VIRA :';
+  if (!miraEl.textContent || miraEl.textContent.trim() === "")
+    miraEl.textContent = "MIRA :";
+  if (!viraEl.textContent || viraEl.textContent.trim() === "")
+    viraEl.textContent = "VIRA :";
 
   // Désactiver les touches de déplacement pendant la question
   document.removeEventListener("keydown", handleMovement);
@@ -227,19 +259,23 @@ function checkAnswer(answer, q, r, c) {
   userAnswers[`${r},${c}`] = { answer: answer, correct: wasCorrect };
 
   // Affiche l'explication
-  feedbackEl.textContent = q.explanation;
+  feedbackEl.textContent = `INFO : ${q.explanation}`;
+  feedbackEl.classList.add("info-text");
   // Montre la carte d'info jusqu'à la prochaine question
   if (infoWrap) {
-    infoWrap.classList.add('show');
+    infoWrap.classList.add("show");
   }
+  // memorizar a posição da última pergunta respondida
+  lastAnsweredPos = `${r},${c}`;
   if (wasCorrect) {
-    miraEl.textContent = "MIRA : Bravo, tu avances ! Voici une petite explication :";
+    miraEl.textContent =
+      "MIRA : Bravo, tu avances ! Voici une petite explication :";
     viraEl.textContent = "VIRA : Hmm, pas mal... Je suppose que tu as raison.";
     scoreValue++;
   } else {
-    viraEl.textContent = "VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...";
+    viraEl.textContent =
+      "VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...";
     miraEl.textContent = "MIRA : ";
-    scoreValue = Math.max(0, scoreValue - 1);
   }
 
   // Marque la case comme visitée (devient chemin)
@@ -255,18 +291,44 @@ function checkAnswer(answer, q, r, c) {
 }
 
 function showQuestions() {
-  const reponsesDiv = document.getElementById("reponses");
-  reponsesDiv.innerHTML = "<h3>Questions et Réponses :</h3>";
+  // Mostrar resultados em modal com score e lista de perguntas
+  const modal = document.getElementById("resultsModal");
+  const finalScore = document.getElementById("finalScore");
+  const resultsList = document.getElementById("resultsList");
+  if (!modal || !finalScore || !resultsList) return;
+  finalScore.textContent = `Score: ${scoreValue}/${
+    Object.keys(questions).length
+  }`;
+  resultsList.innerHTML = "";
   for (const key in questions) {
     const q = questions[key];
-    const qDiv = document.createElement("div");
     const ua = userAnswers[key];
-    const userText = ua
-      ? ` - Ta réponse: ${ua.answer ? "Vrai" : "Faux"} (${ua.correct ? "✓ correct" : "✗ incorrect"})`
-      : " - Pas encore répondu";
-    qDiv.innerHTML = `<strong>Q:</strong> ${q.text} <br> <strong>Réponse:</strong> ${q.correct ? "Vrai" : "Faux"}${userText} <br> <em>${q.explanation}</em>
-      <br><br>`;
-    reponsesDiv.appendChild(qDiv);
+    const item = document.createElement("div");
+    item.className = "result-item";
+    const correct = ua && ua.correct;
+    const status = correct ? "correct" : "incorrect";
+    const userAnsText = ua ? (ua.answer ? "Vrai" : "Faux") : "Pas répondu";
+    item.innerHTML = `
+      <div><strong>Q:</strong> ${q.text}</div>
+      <div><strong>Réponse:</strong> ${q.correct ? "Vrai" : "Faux"}</div>
+      <div><strong>Ta réponse:</strong> ${userAnsText} <span class="${status}">(${
+      ua ? (ua.correct ? "✓ correct" : "✗ incorrect") : "—"
+    })</span></div>
+      <div class="explanation"><em>${q.explanation}</em></div>
+    `;
+    resultsList.appendChild(item);
+  }
+  modal.hidden = false;
+
+  const closeBtn = document.getElementById("closeResults");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      const modal = document.getElementById("resultsModal");
+
+      modal.style.display = "none";
+
+      drawMaze();
+    });
   }
 }
 

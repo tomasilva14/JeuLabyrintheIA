@@ -32,9 +32,7 @@
 
       <aside class="panel">
         <div id="question-box" class="panel-section">
-          <p id="question">
-            Clique sur "PLAY" pour entrer dans le labyrinthe
-          </p>
+          <p id="question">Clique sur "PLAY" pour entrer dans le labyrinthe</p>
           <div id="choices" class="choices">
             <button id="trueBtn" class="choice-btn">Vrai</button>
             <button id="falseBtn" class="choice-btn">Faux</button>
@@ -48,13 +46,27 @@
         </div>
 
         <div id="infoQuestion">
-          <p id="feedback-text" class="green character mira"> Info:</p>
+          <p id="feedback-text" class="green character mira">INFO :</p>
         </div>
-
-        <div id="reponses" class="panel-section reponses"></div>
       </aside>
     </main>
 
     <script src="script.js"></script>
+    <!-- Modal para resultados finais -->
+    <div
+      id="resultsModal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resultsTitle"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="resultsTitle">Félicitations !</h2>
+        <p id="finalScore">Score: 0</p>
+        <div id="resultsList"></div>
+        <button id="closeResults" class="choice-btn">Fermer</button>
+      </div>
+    </div>
   </body>
 </html>

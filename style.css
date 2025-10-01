@@ -109,6 +109,24 @@ body {
   max-height: none;
   overflow: visible;
 }
+
+/* Aplica destaque visual quando o jogo está ativo ou após resposta */
+.panel.play-active {
+  /* Visual inspirado em .start-btn */
+  background: linear-gradient(
+    180deg,
+    rgba(77, 208, 225, 0.08),
+    rgba(38, 198, 218, 0.04)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--neon);
+  box-shadow: 0 6px 20px rgba(2, 8, 12, 0.6), 0 0 18px rgba(38, 198, 218, 0.06);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+  transition: box-shadow 220ms ease, background 220ms ease,
+    border-color 220ms ease;
+}
 .panel-section {
   margin-bottom: 10px;
   padding: 6px 4px;
@@ -125,19 +143,27 @@ body {
   padding: 10px 12px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(180deg, var(--neon), var(--accent));
-  color: #041014;
-  font-weight: 700;
+  /* Unificar visual com o bouton start */
+  background: linear-gradient(
+    180deg,
+    rgba(77, 208, 225, 0.12),
+    rgba(38, 198, 218, 0.06)
+  );
+  color: var(--neon);
+  font-weight: 800;
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s;
+  transition: transform 160ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 180ms ease, color 140ms ease, background 160ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 .choice-btn:active {
-  transform: translateY(2px);
+  transform: translateY(1px) scale(0.995);
+  box-shadow: 0 6px 16px rgba(2, 8, 12, 0.6), 0 0 12px rgba(38, 198, 218, 0.08);
 }
 
 p#question {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .start-btn {
@@ -146,38 +172,60 @@ p#question {
   padding: 10px 18px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(180deg, rgba(77,208,225,0.12), rgba(38,198,218,0.06));
-  color: var(--neon); 
+  background: linear-gradient(
+    180deg,
+    rgba(77, 208, 225, 0.12),
+    rgba(38, 198, 218, 0.06)
+  );
+  color: var(--neon);
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(2,8,12,0.6), 0 0 18px rgba(38,198,218,0.06);
-  transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 180ms ease, color 140ms ease, background 160ms ease;
+  box-shadow: 0 6px 20px rgba(2, 8, 12, 0.6), 0 0 18px rgba(38, 198, 218, 0.06);
+  transition: transform 160ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 180ms ease, color 140ms ease, background 160ms ease;
   backdrop-filter: blur(6px) saturate(120%);
   -webkit-backdrop-filter: blur(6px) saturate(120%);
-  text-shadow: 0 1px 0 rgba(255,255,255,0.02);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 .start-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(2,8,12,0.65), 0 0 36px rgba(38,198,218,0.14);
+  box-shadow: 0 18px 40px rgba(2, 8, 12, 0.65),
+    0 0 36px rgba(38, 198, 218, 0.14);
   color: var(--neon);
-  background: linear-gradient(180deg, rgba(38,198,218,0.18), rgba(77,208,225,0.08));
+  background: linear-gradient(
+    180deg,
+    rgba(38, 198, 218, 0.18),
+    rgba(77, 208, 225, 0.08)
+  );
+}
+/* Aplicar hover similar às choices */
+.choice-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(2, 8, 12, 0.65),
+    0 0 36px rgba(38, 198, 218, 0.14);
+  color: var(--neon);
+  background: linear-gradient(
+    180deg,
+    rgba(38, 198, 218, 0.18),
+    rgba(77, 208, 225, 0.08)
+  );
 }
 .start-btn:active {
   transform: translateY(1px) scale(0.995);
-  box-shadow: 0 6px 16px rgba(2,8,12,0.6), 0 0 12px rgba(38,198,218,0.08);
+  box-shadow: 0 6px 16px rgba(2, 8, 12, 0.6), 0 0 12px rgba(38, 198, 218, 0.08);
 }
 .start-btn:focus {
   outline: none;
-  box-shadow: 0 18px 40px rgba(2,8,12,0.65), 0 0 48px rgba(77,208,225,0.18);
-  border-color: rgba(77,208,225,0.18);
+  box-shadow: 0 18px 40px rgba(2, 8, 12, 0.65),
+    0 0 48px rgba(77, 208, 225, 0.18);
+  border-color: rgba(77, 208, 225, 0.18);
   color: #001318;
 }
 
-  /* pulse néon subtil optionnel pour le bouton au repos */
+/* pulse néon subtil optionnel pour le bouton au repos */
 .start-btn[data-pulse="true"] {
   animation: buttonNeon 4s ease-in-out infinite;
 }
-
 
 .feedback-panel {
   min-height: 36px;
@@ -193,6 +241,7 @@ p#question {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 0px;
 }
 .character {
   padding: 8px 10px;
@@ -237,7 +286,7 @@ p#question {
   font-size: 0.9rem;
 }
 
-  /* Disposition responsive pour grands écrans : placer canvas et panneau côte à côte */
+/* Disposition responsive pour grands écrans : placer canvas et panneau côte à côte */
 @media (min-width: 900px) {
   .game-area {
     flex-direction: row;
@@ -314,7 +363,15 @@ p#question {
   overflow: visible;
 }
 
-  /* Quand la zone d'info n'est pas active, afficher un état atténué pour rester visible */
+/* Forçar a cor cinzenta quando usamos info-text */
+.info-text {
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Quand la zone d'info n'est pas active, afficher un état atténué pour rester visible */
 #infoQuestion:not(.show) #feedback-text {
   text-align: left;
   background: rgba(255, 255, 255, 0.02);
@@ -323,15 +380,16 @@ p#question {
   border-color: rgba(255, 255, 255, 0.03);
   opacity: 0.85;
   /* allow the text block to grow and push the panel/page rather than scrolling internally */
-  height: auto;
+  height: 140px;
   max-height: none;
   overflow: visible;
 }
 
-  /* Basculer cette classe depuis JS pour révéler la carte d'info en état actif */
+/* Basculer cette classe depuis JS pour révéler la carte d'info en état actif */
 #infoQuestion.show #feedback-text {
   transform: translateY(0);
   opacity: 1;
+  /* se tiver .info-text, manter cinzento */
   color: var(--neon);
   border-style: solid;
   border-color: rgba(77, 208, 225, 0.12);
@@ -342,10 +400,120 @@ p#question {
   );
 }
 
+/* sobrepor quando .info-text presente: manter cinzento mesmo em estado .show */
+#infoQuestion.show #feedback-text.info-text {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.03);
+  opacity: 0.85;
+  height: 140px;
+  max-height: none;
+  overflow: visible;
+}
+
 @media (max-width: 520px) {
   #feedback-text {
-  min-width: 0;
-  font-size: 0.9rem;
+    min-width: 0;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Modal results */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 8, 12, 0.6);
+  z-index: 1200;
+}
+.modal[hidden] {
+  display: none;
+}
+.modal-content {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 21, 24, 0.98),
+    rgba(10, 14, 16, 0.98)
+  );
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: min(720px, 92vw);
+  width: 720px;
+  color: #e9f7f8;
+}
+#resultsList {
+  margin-top: 12px;
+  max-height: 360px;
+  overflow: auto;
+}
+#resultsList .result-item {
+  padding: 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+}
+#resultsList .correct {
+  color: rgb(76, 184, 76);
+  font-weight: 700;
+}
+#resultsList .incorrect {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* Fixar tamanhos para Mira, Vira e Info e permitir scroll interno */
+.characters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 0px;
+  min-height: 140px; /* aumentar tamanho para acomodar textos maiores */
+  max-height: 220px;
+  overflow: hidden; /* container fixa, conteúdo rola internamente */
+}
+.characters > .scrollable {
+  height: 100%;
+  overflow: auto;
+  padding-right: 6px; /* espaço para scrollbar */
+}
+.mira,
+.vira {
+  min-height: 56px;
+  max-height: 120px;
+  overflow: hidden;
+}
+.mira > .inner,
+.vira > .inner {
+  height: 100%;
+  overflow: auto;
   padding: 8px 10px;
+  line-height: 1.35;
+}
+
+#infoQuestion {
+  min-height: 160px; /* aumentar para manter consistência com personagens */
+  max-height: 240px;
+  overflow: hidden;
+}
+#infoQuestion > .scrollable,
+#feedback-text {
+  height: 100%;
+  overflow: auto;
+  padding: 12px;
+}
+
+/* Adjust small screens so UI still fits */
+@media (max-width: 520px) {
+  .characters {
+    min-height: 110px;
+    max-height: 160px;
+  }
+  #infoQuestion {
+    min-height: 120px;
+    max-height: 180px;
   }
 }
