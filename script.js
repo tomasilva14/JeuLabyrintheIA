@@ -268,14 +268,13 @@ function checkAnswer(answer, q, r, c) {
   // memorizar a posição da última pergunta respondida
   lastAnsweredPos = `${r},${c}`;
   if (wasCorrect) {
-    miraEl.textContent =
-      "MIRA : Bravo, tu avances ! Voici une petite explication :";
+    miraEl.textContent = "MIRA : Bravo, tu avances !";
     viraEl.textContent = "VIRA : Hmm, pas mal... Je suppose que tu as raison.";
     scoreValue++;
   } else {
-    viraEl.textContent =
-      "VIRA : Tu as sûrement raison, mais alors pourquoi la case est toujours violette...";
-    miraEl.textContent = "MIRA : ";
+    miraEl.textContent =
+      "MIRA : Oh, c’est faux, mais vous pouvez voir dans l’info une petite explication!";
+    viraEl.textContent = "VIRA : On dirait que quelqu’un n’a pas étudié!";
   }
 
   // Marque la case comme visitée (devient chemin)
